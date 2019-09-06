@@ -74,6 +74,7 @@ function drawSquare(x, y, color) {
  * Draw matrix
  *
  * @param {Array} matrix
+ * @param {Object} offset
  */
 function drawMatrix(matrix, offset) {
 	matrix.forEach((row, y) => {
@@ -91,6 +92,7 @@ const arena = createMatrix(COLUMNS, ROWS);
  * Draws arena
  *
  * @param {Array} arena
+ * @param {Object} offset
  */
 function drawArena(arena, offset) {
 	arena.forEach((row, y) => {
