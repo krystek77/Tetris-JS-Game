@@ -10,6 +10,8 @@ canvas.height = ROWS * SIZE_SQUARE;
 context.fillStyle = 'black';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
+const colors = ['#000000', '#fe0900', '#fe0900', '#1bffff', '#fdff00', '#fdff00', '#fdff00', '#fdff00'];
+
 /**
  *  Creates choosen tetrmino
  *
