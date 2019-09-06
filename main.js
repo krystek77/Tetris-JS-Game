@@ -42,9 +42,9 @@ function createTetrimino(type) {
  * @returns Array
  */
 function randomTetrimino() {
-	const str = 'ITOLJSZ';
-	const tetriminoIndex = Math.floor(Math.random() * str.length);
-	return createTetrimino(str.charAt(tetriminoIndex));
+	const tetrominos = 'ITOLJSZ';
+	const tetriminoIndex = Math.floor(Math.random() * tetrominos.length);
+	return createTetrimino(tetrominos.charAt(tetriminoIndex));
 }
 
 /**
