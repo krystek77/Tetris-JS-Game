@@ -11,6 +11,32 @@ context.fillStyle = 'black';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 const matrix = [[1, 1, 1], [0, 1, 0], [0, 0, 0]];
+
+/**
+ *  Creates choosen tetrmino
+ *
+ * @param {String} type
+ * @returns {Array}
+ */
+function createTetrimino(type) {
+	switch (type) {
+		case 'I':
+			return [[0, 1, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0], [0, 1, 0, 0]];
+		case 'T':
+			return [[2, 2, 2], [0, 2, 0], [0, 0, 0]];
+		case 'O':
+			return [[3, 3], [3, 3]];
+		case 'L':
+			return [[0, 4, 0], [0, 4, 0], [0, 4, 4]];
+		case 'J':
+			return [[0, 5, 0], [0, 5, 0], [5, 5, 0]];
+		case 'S':
+			return [[0, 6, 6], [6, 6, 0], [0, 0, 0]];
+		default:
+			return [[7, 7, 0], [0, 7, 7], [0, 0, 0]];
+	}
+}
+
 /**
  * Draw square at position x and y with given fill color
  *
