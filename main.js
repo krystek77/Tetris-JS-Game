@@ -88,4 +88,13 @@ function drawMatrix(matrix) {
 const matrix = createTetrimino('T');
 const arena = createMatrix(COLUMNS, ROWS);
 
+function drawArena(arena) {
+	arena.forEach((row, y) => {
+		row.forEach((value, x) => {
+			drawSquare(x, y, colors[value]);
+		});
+	});
+}
+
+drawArena(arena);
 drawMatrix(matrix);
