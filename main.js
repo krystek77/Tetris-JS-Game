@@ -75,11 +75,11 @@ function drawSquare(x, y, color) {
  *
  * @param {Array} matrix
  */
-function drawMatrix(matrix) {
+function drawMatrix(matrix, offset) {
 	matrix.forEach((row, y) => {
 		row.forEach((value, x) => {
 			if (value !== 0) {
-				drawSquare(x, y, colors[value]);
+				drawSquare(x + offset.x, y + offset.y, colors[value]);
 			}
 		});
 	});
@@ -101,4 +101,4 @@ function drawArena(arena) {
 }
 
 drawArena(arena);
-drawMatrix(matrix);
+drawMatrix(matrix,{x:0,y:0});
