@@ -83,16 +83,6 @@ function drawMatrix(matrix, offset) {
 	});
 }
 
-const arena = createMatrix(COLUMNS, ROWS);
-
-const player = {
-	matrix: createTetrimino('T'),
-	position: {
-		x: 3,
-		y: 0,
-	},
-};
-
 /**
  * Draws arena
  *
@@ -118,4 +108,15 @@ function draw() {
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
 }
+
+const arena = createMatrix(COLUMNS, ROWS);
+
+const player = {
+	matrix: createTetrimino('T'),
+	position: {
+		x: 4,
+		y: 1,
+	},
+};
+
 draw();
