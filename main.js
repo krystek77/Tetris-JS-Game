@@ -10,8 +10,6 @@ canvas.height = ROWS * SIZE_SQUARE;
 context.fillStyle = 'black';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
-const matrix = [[1, 1, 1], [0, 1, 0], [0, 0, 0]];
-
 /**
  *  Creates choosen tetrmino
  *
@@ -64,5 +62,7 @@ function drawMatrix(matrix) {
 		});
 	});
 }
+
+const matrix = createTetrimino('T');
 
 drawMatrix(matrix);
