@@ -158,6 +158,23 @@ function merge(arena, player) {
 	});
 }
 /**
+ * Check collision
+ *
+ * @param {Array} arena
+ * @param {Object} player
+ * @returns
+ */
+function collide(arena, player) {
+	for (let y = 0; y < player.matrix.length; y++) {
+		for (let x = 0; x < player.matrix[0].length; x++) {
+			if (player.matrix[y][x] !== 0 && arena[y + player.position.y][x + player.position.x]) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+/**
  * Game Loop
  * @param {Number} time
  */
