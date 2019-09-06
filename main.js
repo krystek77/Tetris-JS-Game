@@ -85,6 +85,7 @@ function drawMatrix(matrix, offset) {
 
 const matrix = createTetrimino('T');
 const arena = createMatrix(COLUMNS, ROWS);
+
 /**
  * Draws arena
  *
@@ -99,8 +100,10 @@ function drawArena(arena, offset) {
 	});
 }
 
-
-
+/**
+ * Render scene
+ *
+ */
 function draw() {
 	context.fillStyle = 'black';
 	context.fillRect(0, 0, canvas.width, canvas.height);
