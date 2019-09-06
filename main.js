@@ -7,9 +7,6 @@ const SIZE_SQUARE = 20;
 canvas.width = COLUMNS * SIZE_SQUARE;
 canvas.height = ROWS * SIZE_SQUARE;
 
-context.fillStyle = 'black';
-context.fillRect(0, 0, canvas.width, canvas.height);
-
 const colors = ['#000000', '#fe0900', '#999999', '#1bffff', '#fdff00', '#ff00fe', '#2600ff', '#01ff00'];
 /**
  * Creates array by given rows and columns and set value of each element of array to zero.
@@ -102,5 +99,13 @@ function drawArena(arena, offset) {
 	});
 }
 
-drawArena(arena, { x: 0, y: 0 });
-drawMatrix(matrix, { x: 0, y: 0 });
+
+
+function draw() {
+	context.fillStyle = 'black';
+	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	drawArena(arena, { x: 0, y: 0 });
+	drawMatrix(matrix, { x: 2, y: 3 });
+}
+draw();
