@@ -10,6 +10,7 @@ canvas.height = ROWS * SIZE_SQUARE;
 context.fillStyle = 'black';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
+const matrix = [[1, 1, 1], [0, 1, 0], [0, 0, 0]];
 /**
  * Draw square at position x and y with given fill color
  *
@@ -23,3 +24,19 @@ function drawSquare(x, y, color) {
 	context.fillRect(x * SIZE_SQUARE, y * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
 	context.strokeRect(x * SIZE_SQUARE, y * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
 }
+/**
+ * Draw matrix
+ *
+ * @param {Array} matrix
+ */
+function drawMatrix(matrix) {
+	matrix.forEach((row, y) => {
+		row.forEach((value, x) => {
+			if (value !== 0) {
+				drawSquare(x, y, 'red');
+			}
+		});
+	});
+}
+
+drawMatrix(matrix);
