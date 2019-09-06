@@ -117,6 +117,12 @@ const player = {
 		y: 1,
 	},
 };
+
+
+/**
+ * Drop player
+ *
+ */
 function playerDrop() {
 	dropCounter = 0;
 	player.position.y++;
