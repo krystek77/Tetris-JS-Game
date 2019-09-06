@@ -103,7 +103,7 @@ function drawArena(arena, offset) {
  */
 function draw() {
 	context.fillStyle = 'black';
-	context.fillRect(0, 0, canvas.width, canvas.height);
+	// context.fillRect(0, 0, canvas.width, canvas.height);
 
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
@@ -119,4 +119,25 @@ const player = {
 	},
 };
 
-draw();
+/**
+ * Game Loop
+ * @param {Number} time
+ */
+let lastTime = 0;
+let dropCounter = 0;
+let dropInterval = 1000;
+
+function update(time = 0) {
+	let deltaTime = time - lastTime;
+	lastTime = time;
+	dropCounter += deltaTime;
+	if (dropCounter > dropInterval) {
+        dropCounter = 0;
+        
+        draw();
+        
+	}
+	requestAnimationFrame(update);
+}
+
+update();
