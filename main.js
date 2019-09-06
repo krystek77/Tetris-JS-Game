@@ -10,7 +10,7 @@ canvas.height = ROWS * SIZE_SQUARE;
 context.fillStyle = 'black';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
-const colors = ['#000000', '#fe0900', '#fe0900', '#1bffff', '#fdff00', '#fdff00', '#fdff00', '#fdff00'];
+const colors = ['#000000', '#fe0900', '#999999', '#1bffff', '#fdff00', '#ff00fe', '#2600ff', '#01ff00'];
 
 /**
  *  Creates choosen tetrmino
@@ -46,7 +46,7 @@ function createTetrimino(type) {
  */
 function drawSquare(x, y, color) {
 	context.fillStyle = color;
-	context.strokeStyle = 'white';
+	context.strokeStyle = 'grey';
 	context.fillRect(x * SIZE_SQUARE, y * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
 	context.strokeRect(x * SIZE_SQUARE, y * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
 }
@@ -59,12 +59,12 @@ function drawMatrix(matrix) {
 	matrix.forEach((row, y) => {
 		row.forEach((value, x) => {
 			if (value !== 0) {
-				drawSquare(x, y, 'red');
+				drawSquare(x, y, colors[value]);
 			}
 		});
 	});
 }
 
-const matrix = createTetrimino('T');
+const matrix = createTetrimino('J');
 
 drawMatrix(matrix);
