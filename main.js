@@ -157,17 +157,17 @@ function update(time = 0) {
 
 function control(event) {
 	if (event.key === 'ArrowLeft') {
-		console.log('MOVE LEFT');
+		// console.log('MOVE LEFT');
 		playerMove(-1);
 	} else if (event.key === 'ArrowRight') {
-		console.log('MOVE RIGHT');
+		// console.log('MOVE RIGHT');
 		playerMove(+1);
 	} else if (event.key === 'ArrowUp') {
-		console.log('ROTATE CLOCKWISE');
+		// console.log('ROTATE CLOCKWISE');
 	} else if (event.key === 'ArrowDown') {
-		console.log('ROTATE COUNTER CLOCKWISE');
+		// console.log('ROTATE COUNTER CLOCKWISE');
 	} else if (event.key === 'd') {
-		console.log('DROP');
+		// console.log('DROP');
 		playerDrop();
 	}
 }
