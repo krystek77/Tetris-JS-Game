@@ -135,7 +135,28 @@ function playerMove(direction) {
 	dropCounter = 0;
 	player.position.x += direction;
 }
-
+/**
+ * Put the player's place in the arena
+ *
+ * @param {Array} arena
+ * @param {Object} player
+ */
+function merge(arena, player) {
+	player.matrix.forEach((row, y) => {
+		row.forEach((value, x) => {
+			if (value !== 0) {
+				if (
+					player.position.x + x >= 0 &&
+					player.position.x + x < arena[0].length &&
+					player.position.y + y >= 0 &&
+					player.position.y + y < arena.length
+				) {
+					arena[y + player.position.y][x + player.position.x] = value;
+				}
+			}
+		});
+	});
+}
 /**
  * Game Loop
  * @param {Number} time
@@ -149,7 +170,7 @@ function update(time = 0) {
 	lastTime = time;
 	dropCounter += deltaTime;
 	if (dropCounter > dropInterval) {
-		//playerDrop();
+		// playerDrop();
 	}
 	draw();
 	requestAnimationFrame(update);
