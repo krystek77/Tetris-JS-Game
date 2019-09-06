@@ -65,6 +65,6 @@ function drawMatrix(matrix) {
 	});
 }
 
-const matrix = createTetrimino('J');
+const matrix = createTetrimino('T');
 
 drawMatrix(matrix);
