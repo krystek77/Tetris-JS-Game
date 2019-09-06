@@ -118,7 +118,6 @@ const player = {
 	},
 };
 
-
 /**
  * Drop player
  *
@@ -127,6 +126,16 @@ function playerDrop() {
 	dropCounter = 0;
 	player.position.y++;
 }
+/**
+ * Move player to the right or left
+ *
+ * @param {Number} direction
+ */
+function playerMove(direction) {
+	dropCounter = 0;
+	player.position.x += direction;
+}
+
 /**
  * Game Loop
  * @param {Number} time
@@ -149,10 +158,10 @@ function update(time = 0) {
 function control(event) {
 	if (event.key === 'ArrowLeft') {
 		console.log('MOVE LEFT');
-		player.position.x--;
+		playerMove(-1);
 	} else if (event.key === 'ArrowRight') {
 		console.log('MOVE RIGHT');
-		player.position.x++;
+		playerMove(+1);
 	} else if (event.key === 'ArrowUp') {
 		console.log('ROTATE CLOCKWISE');
 	} else if (event.key === 'ArrowDown') {
