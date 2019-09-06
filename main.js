@@ -110,7 +110,6 @@ function draw() {
 }
 
 const arena = createMatrix(COLUMNS, ROWS);
-
 const player = {
 	matrix: createTetrimino('T'),
 	position: {
@@ -118,7 +117,10 @@ const player = {
 		y: 1,
 	},
 };
-
+function playerDrop() {
+	dropCounter = 0;
+	player.position.y++;
+}
 /**
  * Game Loop
  * @param {Number} time
@@ -132,12 +134,27 @@ function update(time = 0) {
 	lastTime = time;
 	dropCounter += deltaTime;
 	if (dropCounter > dropInterval) {
-        dropCounter = 0;
-        
-        draw();
-        
+		playerDrop();
 	}
+	draw();
 	requestAnimationFrame(update);
 }
 
+function control(event) {
+	if (event.key === 'ArrowLeft') {
+		console.log('MOVE LEFT');
+		player.position.x--;
+	} else if (event.key === 'ArrowRight') {
+		console.log('MOVE RIGHT');
+		player.position.x++;
+	} else if (event.key === 'ArrowUp') {
+		console.log('ROTATE CLOCKWISE');
+	} else if (event.key === 'ArrowDown') {
+		console.log('ROTATE COUNTER CLOCKWISE');
+	} else if (event.key === 'd') {
+		console.log('DROP');
+		playerDrop();
+	}
+}
+window.addEventListener('keydown', control);
 update();
