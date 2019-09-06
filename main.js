@@ -149,7 +149,7 @@ function update(time = 0) {
 	lastTime = time;
 	dropCounter += deltaTime;
 	if (dropCounter > dropInterval) {
-		playerDrop();
+		//playerDrop();
 	}
 	draw();
 	requestAnimationFrame(update);
