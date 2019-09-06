@@ -92,13 +92,13 @@ const arena = createMatrix(COLUMNS, ROWS);
  *
  * @param {Array} arena
  */
-function drawArena(arena) {
+function drawArena(arena, offset) {
 	arena.forEach((row, y) => {
 		row.forEach((value, x) => {
-			drawSquare(x, y, colors[value]);
+			drawSquare(x + offset.x, y + offset.y, colors[value]);
 		});
 	});
 }
 
-drawArena(arena);
-drawMatrix(matrix,{x:0,y:0});
+drawArena(arena, { x: 0, y: 0 });
+drawMatrix(matrix, { x: 0, y: 0 });
