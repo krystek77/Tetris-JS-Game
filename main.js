@@ -87,7 +87,11 @@ function drawMatrix(matrix) {
 
 const matrix = createTetrimino('T');
 const arena = createMatrix(COLUMNS, ROWS);
-
+/**
+ * Draws arena
+ *
+ * @param {Array} arena
+ */
 function drawArena(arena) {
 	arena.forEach((row, y) => {
 		row.forEach((value, x) => {
