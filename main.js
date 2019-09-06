@@ -98,33 +98,49 @@ function drawArena(arena, offset) {
 }
 
 /**
- * Render scene
+ * Check collision
  *
+ * @param {Array} arena
+ * @param {Object} player
+ * @returns
  */
-function draw() {
-	context.fillStyle = 'black';
-	// context.fillRect(0, 0, canvas.width, canvas.height);
-
-	drawArena(arena, { x: 0, y: 0 });
-	drawMatrix(player.matrix, player.position);
+function collide(arena, player) {
+	for (let y = 0; y < player.matrix.length; y++) {
+		for (let x = 0; x < player.matrix[0].length; x++) {
+			if (
+				player.matrix[y][x] !== 0 &&
+				(arena[y + player.position.y] && arena[y + player.position.y][x + player.position.x] !== 0)
+			) {
+				console.log('ok');
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 const arena = createMatrix(COLUMNS, ROWS);
 const player = {
 	matrix: createTetrimino('T'),
 	position: {
-		x: 4,
-		y: 1,
+		x: 3,
+		y: 0,
 	},
 };
-
 /**
  * Drop player
  *
  */
 function playerDrop() {
-	dropCounter = 0;
 	player.position.y++;
+	if (collide(arena, player)) {
+		console.log('collide');
+		player.position.y--;
+		merge(arena, player);
+		player.position.y = 0;
+		player.position.x = 3;
+	}
+	dropCounter = 0;
 }
 /**
  * Move player to the right or left
@@ -157,22 +173,17 @@ function merge(arena, player) {
 		});
 	});
 }
+
 /**
- * Check collision
+ * Render scene
  *
- * @param {Array} arena
- * @param {Object} player
- * @returns
  */
-function collide(arena, player) {
-	for (let y = 0; y < player.matrix.length; y++) {
-		for (let x = 0; x < player.matrix[0].length; x++) {
-			if (player.matrix[y][x] !== 0 && arena[y + player.position.y][x + player.position.x]) {
-				return true;
-			}
-		}
-	}
-	return false;
+function draw() {
+	context.fillStyle = 'black';
+	// context.fillRect(0, 0, canvas.width, canvas.height);
+
+	drawArena(arena, { x: 0, y: 0 });
+	drawMatrix(player.matrix, player.position);
 }
 /**
  * Game Loop
