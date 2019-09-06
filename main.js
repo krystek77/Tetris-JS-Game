@@ -36,6 +36,16 @@ function createTetrimino(type) {
 			return [[7, 7, 0], [0, 7, 7], [0, 0, 0]];
 	}
 }
+/**
+ * Draws a Tetrimino
+ *
+ * @returns Array
+ */
+function randomTetrimino() {
+	const str = 'ITOLJSZ';
+	const tetriminoIndex = Math.floor(Math.random() * str.length);
+	return createTetrimino(str.charAt(tetriminoIndex));
+}
 
 /**
  * Draw square at position x and y with given fill color
