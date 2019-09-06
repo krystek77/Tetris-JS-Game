@@ -11,7 +11,13 @@ context.fillStyle = 'black';
 context.fillRect(0, 0, canvas.width, canvas.height);
 
 const colors = ['#000000', '#fe0900', '#999999', '#1bffff', '#fdff00', '#ff00fe', '#2600ff', '#01ff00'];
-
+/**
+ * Creates array by given rows and columns and set value of each element of array to zero.
+ *
+ * @param {Number} columns
+ * @param {Number} rows
+ * @returns Array
+ */
 function createMatrix(columns, rows) {
 	return Array.from({ length: rows }, row => Array.from({ length: columns }).fill(0));
 }
