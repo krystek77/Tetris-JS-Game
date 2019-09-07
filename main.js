@@ -179,7 +179,9 @@ function rotateMatrix(matrix, direction = 1) {
 	}
 	return m;
 }
-
+function playerRotate(direction) {
+	player.matrix = rotateMatrix(player.matrix, direction);
+}
 
 /**
  * Put the player's place in the arena
