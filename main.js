@@ -105,17 +105,18 @@ function drawArena(arena, offset) {
  * @returns
  */
 function collide(arena, player) {
-	for (let y = 0; y < player.matrix.length; y++) {
-		for (let x = 0; x < player.matrix[0].length; x++) {
+	//true && undefined = undefined
+	for (let y = 0; y < player.matrix.length; ++y) {
+		for (let x = 0; x < player.matrix[y].length; ++x) {
 			if (
 				player.matrix[y][x] !== 0 &&
-				(arena[y + player.position.y] && arena[y + player.position.y][x + player.position.x] !== 0)
+				(arena[y + player.position.y] && arena[y + player.position.y][x + player.position.x]) !== 0
 			) {
-				console.log('ok');
 				return true;
 			}
 		}
 	}
+
 	return false;
 }
 
@@ -137,8 +138,9 @@ function playerDrop() {
 		console.log('collide');
 		player.position.y--;
 		merge(arena, player);
+		player.matrix = randomTetrimino();
 		player.position.y = 0;
-		player.position.x = 3;
+		player.position.x = Math.floor(arena[0].length / 2 - player.matrix[0].length / 2);
 	}
 	dropCounter = 0;
 }
@@ -148,9 +150,37 @@ function playerDrop() {
  * @param {Number} direction
  */
 function playerMove(direction) {
-	dropCounter = 0;
 	player.position.x += direction;
+	if (collide(arena, player)) {
+		player.position.x += -direction;
+	}
+	dropCounter = 0;
 }
+/**
+ *Rotates matrix 90 degrees clockwise for 1 and counter clockwise for -1 direction
+ *
+ * @param {Array} matrix
+ * @param {Number} [direction=0]
+ */
+function rotateMatrix(matrix, direction = 1) {
+	const m = [];
+	matrix.forEach((row, y) => {
+		m[y] = [];
+		row.forEach((value, x) => {
+			m[y][x] = matrix[x][y];
+		});
+	});
+	if (direction > 0) {
+		m.forEach((row, y) => {
+			m[y].reverse();
+		});
+	} else if (direction < 0) {
+		m.reverse();
+	}
+	return m;
+}
+
+
 /**
  * Put the player's place in the arena
  *
@@ -213,8 +243,10 @@ function control(event) {
 		playerMove(+1);
 	} else if (event.key === 'ArrowUp') {
 		// console.log('ROTATE CLOCKWISE');
+		playerRotate(1);
 	} else if (event.key === 'ArrowDown') {
 		// console.log('ROTATE COUNTER CLOCKWISE');
+		playerRotate(-1);
 	} else if (event.key === 'd') {
 		// console.log('DROP');
 		playerDrop();
