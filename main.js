@@ -179,6 +179,11 @@ function rotateMatrix(matrix, direction = 1) {
 	}
 	return m;
 }
+/**
+ * Rotates player
+ *
+ * @param {Number} direction
+ */
 function playerRotate(direction) {
 	player.matrix = rotateMatrix(player.matrix, direction);
 }
