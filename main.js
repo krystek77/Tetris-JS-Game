@@ -138,9 +138,7 @@ function playerDrop() {
 		console.log('collide');
 		player.position.y--;
 		merge(arena, player);
-		player.matrix = randomTetrimino();
-		player.position.y = 0;
-		player.position.x = Math.floor(arena[0].length / 2 - player.matrix[0].length / 2);
+		playerReset();
 	}
 	dropCounter = 0;
 }
