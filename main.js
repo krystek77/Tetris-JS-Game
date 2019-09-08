@@ -3,6 +3,7 @@ const context = canvas.getContext('2d');
 const ROWS = 20;
 const COLUMNS = 10;
 const SIZE_SQUARE = 20;
+let LIFE = 3;
 
 canvas.width = COLUMNS * SIZE_SQUARE;
 canvas.height = ROWS * SIZE_SQUARE;
