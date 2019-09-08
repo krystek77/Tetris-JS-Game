@@ -149,7 +149,19 @@ function playerDrop() {
  *
  */
 function checkFullRow() {
-	console.log('Check full row');
+	for (let y = arena.length - 1; y > 0; y--) {
+		let isFullRow = true;
+		console.log(arena[y]);
+		for (let x = 0; x < arena[y].length; x++) {
+			isFullRow = isFullRow && arena[y][x] != 0;
+		}
+		if (isFullRow) {
+			console.log('REMOVE ROW AND ADD AT START');
+			const row = arena.splice(y, 1)[0].fill(0);
+			arena.unshift(row);
+			y++;
+		}
+	}
 }
 
 /**
@@ -287,7 +299,7 @@ function update(time = 0) {
 	lastTime = time;
 	dropCounter += deltaTime;
 	if (dropCounter > dropInterval) {
-		// playerDrop();
+		playerDrop();
 	}
 	draw();
 	requestAnimationFrame(update);
