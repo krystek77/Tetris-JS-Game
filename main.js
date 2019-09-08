@@ -140,9 +140,18 @@ function playerDrop() {
 		player.position.y--;
 		merge(arena, player);
 		playerReset();
+		checkFullRow();
 	}
 	dropCounter = 0;
 }
+/**
+ * Check if row is full
+ *
+ */
+function checkFullRow() {
+	console.log('Check full row');
+}
+
 /**
  * Move player to the right or left
  *
