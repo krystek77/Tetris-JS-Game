@@ -163,6 +163,15 @@ function playerReset() {
 	player.matrix = randomTetrimino();
 	player.position.y = 0;
 	player.position.x = Math.floor(arena[0].length / 2 - player.matrix[0].length / 2);
+	if (collide(arena, player)) {
+		LIFE--;
+		console.log(LIFE);
+		arena.forEach(row => {
+			row.fill(0);
+		});
+
+		console.table(arena);
+	}
 }
 
 /**
@@ -251,7 +260,7 @@ function merge(arena, player) {
  */
 function draw() {
 	context.fillStyle = 'black';
-	// context.fillRect(0, 0, canvas.width, canvas.height);
+	context.fillRect(0, 0, canvas.width, canvas.height);
 
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
