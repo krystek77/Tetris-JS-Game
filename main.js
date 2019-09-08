@@ -136,7 +136,7 @@ const player = {
 function playerDrop() {
 	player.position.y++;
 	if (collide(arena, player)) {
-		console.log('collide');
+		// console.log('collide');
 		player.position.y--;
 		merge(arena, player);
 		playerReset();
