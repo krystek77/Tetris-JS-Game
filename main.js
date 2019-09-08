@@ -157,6 +157,16 @@ function playerMove(direction) {
 	dropCounter = 0;
 }
 /**
+ * Reset player
+ *
+ */
+function playerReset() {
+	player.matrix = randomTetrimino();
+	player.position.y = 0;
+	player.position.x = Math.floor(arena[0].length / 2 - player.matrix[0].length / 2);
+}
+
+/**
  *Rotates matrix 90 degrees clockwise for 1 and counter clockwise for -1 direction
  *
  * @param {Array} matrix
@@ -185,7 +195,32 @@ function rotateMatrix(matrix, direction = 1) {
  * @param {Number} direction
  */
 function playerRotate(direction) {
+	let offset = 1;
 	player.matrix = rotateMatrix(player.matrix, direction);
+	// if (collide(arena, player)) {
+	// 	console.log('collision at rotation');
+	// 	if (player.position.x < arena[0].length / 2) {
+	// 		console.log('collision at left edge');
+	// 		player.position.x += offset;
+	// 	} else if (player.position.x > arena[0].length / 2) {
+	// 		console.log('collision at right edge');
+	// 		player.position.x -= offset;
+	// 	}
+	// }
+	while (collide(arena, player)) {
+		console.log('collide');
+		let pos = player.position.x;
+		console.log('pos', pos);
+		player.position.x += offset;
+		offset = -(offset + (offset > 0 ? 1 : -1));
+		if (offset > player.matrix[0].length) {
+			console.log('inner');
+			player.position.x = pos;
+			player.matrix = rotateMatrix(player.matrix, -direction);
+			return;
+		}
+		console.log(offset);
+	}
 }
 
 /**
