@@ -4,6 +4,7 @@ const ROWS = 20;
 const COLUMNS = 10;
 const SIZE_SQUARE = 20;
 let LIFE = 3;
+let SCORE = 0;
 
 canvas.width = COLUMNS * SIZE_SQUARE;
 canvas.height = ROWS * SIZE_SQUARE;
@@ -149,6 +150,7 @@ function playerDrop() {
  *
  */
 function checkFullRow() {
+	let rowCounter = 1;
 	for (let y = arena.length - 1; y > 0; y--) {
 		let isFullRow = true;
 		// console.log(arena[y]);
@@ -159,8 +161,11 @@ function checkFullRow() {
 			// console.log('REMOVE ROW AND ADD AT START');
 			const row = arena.splice(y, 1)[0].fill(0);
 			arena.unshift(row);
+			SCORE += rowCounter * 10;
+			// console.log(SCORE);
 			y++;
 		}
+		rowCounter++;
 	}
 }
 
