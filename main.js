@@ -3,8 +3,8 @@ const context = canvas.getContext('2d');
 const ROWS = 20;
 const COLUMNS = 10;
 const SIZE_SQUARE = 20;
-const MARGIN_TOP = 2;
-const MARGIN_BOTTOM = 2;
+const MARGIN_TOP = 4;
+const MARGIN_BOTTOM = 4;
 const MARGIN_LEFT = 3;
 const MARGIN_RIGHT = 3;
 
@@ -305,7 +305,7 @@ function drawText(text, posX, posY, color, font, maxW) {
 function draw() {
 	context.fillStyle = 'black';
 	context.fillRect(0, 0, canvas.width, canvas.height);
-	
+
 	drawText('SCORE', 60, 20, 'white', 'bold 20px sans-serif', 40);
 	drawText(player.score, 60, 60, 'white', 'bold 40px sans-serif', 40);
 
