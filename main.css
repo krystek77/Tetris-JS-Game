@@ -1,12 +1,20 @@
 body {
     background-color: rgb(75, 75, 75);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
+
 .game-tetris {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width:320px;
+    width: 320px;
 }
+
 .tetris {
     border: 1px solid rgb(233, 233, 233);
 }
@@ -21,11 +29,12 @@ body {
 }
 
 .player-control__key {
-    color:orange;
+    color: orange;
 }
+
 .reset-info {
     background-color: black;
     color: rgb(241, 241, 241);
-    margin:0;
-    padding:10px;
+    margin: 0;
+    padding: 10px;
 }
