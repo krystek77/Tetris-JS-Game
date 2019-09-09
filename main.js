@@ -3,8 +3,6 @@ const context = canvas.getContext('2d');
 const ROWS = 20;
 const COLUMNS = 10;
 const SIZE_SQUARE = 20;
-let LIFE = 3;
-let SCORE = 0;
 
 canvas.width = COLUMNS * SIZE_SQUARE;
 canvas.height = ROWS * SIZE_SQUARE;
@@ -124,11 +122,14 @@ function collide(arena, player) {
 
 const arena = createMatrix(COLUMNS, ROWS);
 const player = {
-	matrix: createTetrimino('T'),
+	matrix: null,
 	position: {
-		x: 3,
+		x: 0,
 		y: 0,
 	},
+	life: 3,
+	score: 0,
+	level: 1,
 };
 /**
  * Drop player
@@ -161,7 +162,7 @@ function checkFullRow() {
 			// console.log('REMOVE ROW AND ADD AT START');
 			const row = arena.splice(y, 1)[0].fill(0);
 			arena.unshift(row);
-			SCORE += rowCounter * 10;
+			player.score += rowCounter * 10;
 			// console.log(SCORE);
 			y++;
 		}
@@ -190,13 +191,13 @@ function playerReset() {
 	player.position.y = 0;
 	player.position.x = Math.floor(arena[0].length / 2 - player.matrix[0].length / 2);
 	if (collide(arena, player)) {
-		LIFE--;
-		console.log(LIFE);
+		player.life--;
+		console.log(player.life);
 		arena.forEach(row => {
 			row.fill(0);
 		});
 
-		console.table(arena);
+		// console.table(arena);
 	}
 }
 
@@ -329,4 +330,6 @@ function control(event) {
 	}
 }
 window.addEventListener('keydown', control);
+
+playerReset();
 update();
