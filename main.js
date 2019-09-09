@@ -3,9 +3,13 @@ const context = canvas.getContext('2d');
 const ROWS = 20;
 const COLUMNS = 10;
 const SIZE_SQUARE = 20;
+const MARGIN_TOP = 2;
+const MARGIN_BOTTOM = 2;
+const MARGIN_LEFT = 3;
+const MARGIN_RIGHT = 3;
 
-canvas.width = COLUMNS * SIZE_SQUARE;
-canvas.height = ROWS * SIZE_SQUARE;
+canvas.width = (COLUMNS + MARGIN_LEFT + MARGIN_RIGHT )* SIZE_SQUARE;
+canvas.height = (ROWS + MARGIN_TOP +MARGIN_BOTTOM) * SIZE_SQUARE;
 
 const colors = ['#000000', '#fe0900', '#999999', '#1bffff', '#fdff00', '#ff00fe', '#2600ff', '#01ff00'];
 /**
@@ -64,8 +68,8 @@ function randomTetrimino() {
 function drawSquare(x, y, color) {
 	context.fillStyle = color;
 	context.strokeStyle = 'grey';
-	context.fillRect(x * SIZE_SQUARE, y * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
-	context.strokeRect(x * SIZE_SQUARE, y * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
+	context.fillRect((x+MARGIN_LEFT) * SIZE_SQUARE, (y+MARGIN_TOP) * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
+	context.strokeRect((x+MARGIN_LEFT) * SIZE_SQUARE, (y+MARGIN_TOP)* SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
 }
 /**
  * Draw matrix
