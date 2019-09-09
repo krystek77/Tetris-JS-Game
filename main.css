@@ -23,3 +23,9 @@ body {
 .player-control__key {
     color:orange;
 }
+.reset-info {
+    background-color: black;
+    color: rgb(241, 241, 241);
+    margin:0;
+    padding:10px;
+}
