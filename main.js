@@ -308,7 +308,7 @@ function draw() {
 	context.fillRect(0, 0, canvas.width, canvas.height);
 
 	drawText('SCORE', 60, 20, 'white', 'bold 20px sans-serif', 40);
-	drawText(player.score, 60, 50, 'green', 'bold 40px sans-serif', 40);
+	drawText(player.score, 60, 50, 'green', 'bold 40px sans-serif',100);
 	drawText('LIFES', 60, canvas.height - 40, 'orange', 'bold 20px sans-serif', 40);
 	drawText('00' + player.life, 60, canvas.height - 10, 'white', 'bold 40px sans-serif', 40);
 	drawText('LEVEL', canvas.width - 100, canvas.height - 40, 'orange', 'bold 20px sans-serif', 40);
