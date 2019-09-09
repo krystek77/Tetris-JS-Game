@@ -312,8 +312,9 @@ function draw() {
 	drawText('LIFES', 60, canvas.height - 40, 'orange', 'bold 20px sans-serif', 40);
 	drawText('00' + player.life, 60, canvas.height - 10, 'white', 'bold 40px sans-serif', 40);
 	drawText('LEVEL', canvas.width - 100, canvas.height - 40, 'orange', 'bold 20px sans-serif', 40);
-	drawText('0' + player.level, canvas.width - 100, canvas.height - 10, 'white', 'bold 40px sans-serif', 40);
-
+	drawText(player.level, canvas.width - 100, canvas.height - 10, 'white', 'bold 40px sans-serif', 40);
+	drawText('ROWS', 10, canvas.height/2 + 10, 'white', 'bold 20px sans-serif', 40);
+	drawText(player.rowCount,10,canvas.height/2 + 40,'blue', 'bold 40px sans-serif', 40);
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
 }
