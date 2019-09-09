@@ -13,7 +13,7 @@ function Player() {
 
 Player.prototype.move = function(direction) {
 	this.position.x += direction;
-	if (collide(arena, this)) {
+	if (arena.collide(this)) {
 		this.position.x += -direction;
 	}
 	dropCounter = 0;
@@ -41,7 +41,7 @@ Player.prototype.rotate = function(direction) {
 	let offset = 1;
 	this.matrix = this._rotate(this.matrix, direction);
 
-	while (collide(arena, this)) {
+	while (arena.collide(this)) {
 		let pos = this.position.x;
 
 		this.position.x += offset;
@@ -58,10 +58,10 @@ Player.prototype.reset = function() {
 	this.matrix = JSON.parse(JSON.stringify(this.nextMatrix));
 	this.nextMatrix = randomTetrimino();
 	this.position.y = 0;
-	this.position.x = Math.floor(arena[0].length / 2 - this.matrix[0].length / 2);
-	if (collide(arena, this)) {
+	this.position.x = Math.floor(arena.board[0].length / 2 - this.matrix[0].length / 2);
+	if (arena.collide(this)) {
 		this.life--;
-		arena.forEach(row => {
+		arena.board.forEach(row => {
 			row.fill(0);
 		});
 	}
@@ -69,12 +69,11 @@ Player.prototype.reset = function() {
 
 Player.prototype.drop = function() {
 	this.position.y++;
-	if (collide(arena, this)) {
+	if (arena.collide(this)) {
 		this.position.y--;
-		merge(arena, this);
+		arena.merge(this);
 		this.reset();
-		checkFullRow();
+		arena.checkFullRow();
 	}
 	dropCounter = 0;
 };
-

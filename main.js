@@ -97,91 +97,18 @@ function drawMatrix(matrix, offset) {
  * @param {Object} offset
  */
 function drawArena(arena, offset) {
-	arena.forEach((row, y) => {
+	arena.board.forEach((row, y) => {
 		row.forEach((value, x) => {
 			drawSquare(x + offset.x, y + offset.y, colors[value]);
 		});
 	});
 }
 
-/**
- * Check collision
- *
- * @param {Array} arena
- * @param {Object} player
- * @returns
- */
-function collide(arena, player) {
-	//true && undefined = undefined
-	for (let y = 0; y < player.matrix.length; ++y) {
-		for (let x = 0; x < player.matrix[y].length; ++x) {
-			if (
-				player.matrix[y][x] !== 0 &&
-				(arena[y + player.position.y] && arena[y + player.position.y][x + player.position.x]) !== 0
-			) {
-				return true;
-			}
-		}
-	}
 
-	return false;
-}
-
-const arena = createMatrix(COLUMNS, ROWS);
+const arena = new Arena();
 const player = new Player();
-
 let lastScores = 0;
-/**
- * Check if row is full
- *
- */
-function checkFullRow() {
-	let rowCounter = 1;
-	for (let y = arena.length - 1; y > 0; y--) {
-		let isFullRow = true;
-		for (let x = 0; x < arena[y].length; x++) {
-			isFullRow = isFullRow && arena[y][x] != 0;
-		}
-		if (isFullRow) {
-			const row = arena.splice(y, 1)[0].fill(0);
-			arena.unshift(row);
-			player.score += rowCounter * 10;
-			player.rowCount++;
 
-			if (player.score - lastScores >= SCORE_INTERVAL) {
-				lastScores = player.score;
-				if (player.level <= MAX_LEVEL) {
-					player.level += 1;
-				}
-			}
-			y++;
-			rowCounter *= 2;
-		}
-	}
-}
-
-/**
- * Put the player's place in the arena
- *
- * @param {Array} arena
- * @param {Object} player
- */
-function merge(arena, player) {
-	player.matrix.forEach((row, y) => {
-		row.forEach((value, x) => {
-			if (value !== 0) {
-				if (
-					player.position.x + x >= 0 &&
-					player.position.x + x < arena[0].length &&
-					player.position.y + y >= 0 &&
-					player.position.y + y < arena.length
-				) {
-					arena[y + player.position.y][x + player.position.x] = value;
-				}
-			}
-		});
-	});
-}
 /**
  * Draw text on canvas
  *
@@ -268,7 +195,7 @@ function resetGame(event) {
 		player.life = 3;
 		player.score = 0;
 		player.level = 1;
-		arena.forEach(row => {
+		arena.board.forEach(row => {
 			row.fill(0);
 		});
 		requestAnimationFrame(update);
