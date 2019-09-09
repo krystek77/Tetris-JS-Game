@@ -305,8 +305,10 @@ function drawText(text, posX, posY, color, font, maxW) {
 function draw() {
 	context.fillStyle = 'black';
 	context.fillRect(0, 0, canvas.width, canvas.height);
+	
 	drawText('SCORE', 60, 20, 'white', 'bold 20px sans-serif', 40);
 	drawText(player.score, 60, 60, 'white', 'bold 40px sans-serif', 40);
+
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
 }
