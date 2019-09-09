@@ -301,12 +301,25 @@ function drawText(text, posX, posY, color, font, maxW) {
 	context.fillText(text, posX, posY, maxW);
 }
 /**
+ * Draw reset button on canvas
+ *
+ */
+function drawButton() {
+	context.fillStyle = 'red';
+	context.fillRect(canvas.width - 90, 10, 80, 40);
+	context.strokeStyle = 'white';
+	context.strokeRect(canvas.width - 90, 10, 80, 40);
+	drawText('RESET', canvas.width - 75, 38, 'white', 'bold 20px sans-serif', 50);
+}
+/**
  * Render scene
  *
  */
 function draw() {
 	context.fillStyle = 'black';
 	context.fillRect(0, 0, canvas.width, canvas.height);
+
+	drawButton();
 
 	drawText('SCORE', 60, 20, 'white', 'bold 20px sans-serif', 40);
 	drawText(player.score, 60, 50, 'green', 'bold 40px sans-serif', 100);
@@ -341,15 +354,20 @@ function update(time = 0) {
  * Resets game
  *
  */
-function resetGame() {
-	playerReset();
-	player.life = 3;
-	player.score = 0;
-	player.level = 1;
-	arena.forEach(row => {
-		row.fill(0);
-	});
-	requestAnimationFrame(update);
+function resetGame(event) {
+	const posX = event.offsetX;
+	const posY = event.offsetY;
+	if (posX > canvas.width - 90 && posX < canvas.width - 90 + 80 && posY > 10 && posY < 10 + 40) {
+		console.log(posX, posY);
+		playerReset();
+		player.life = 3;
+		player.score = 0;
+		player.level = 1;
+		arena.forEach(row => {
+			row.fill(0);
+		});
+		requestAnimationFrame(update);
+	}
 }
 
 function control(event) {
