@@ -1,6 +1,20 @@
 body {
     background-color: rgb(75, 75, 75);
 }
+
 canvas {
-    border:1px solid rgb(233, 233, 233);
+    border: 1px solid rgb(233, 233, 233);
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    background-color: rgb(241, 241, 241);
+}
+
+.player-control__key {
+    color:orange;
 }
