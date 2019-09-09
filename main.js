@@ -129,7 +129,8 @@ function collide(arena, player) {
 
 const arena = createMatrix(COLUMNS, ROWS);
 const player = {
-	matrix: null,
+	matrix: randomTetrimino(),
+	nextMatrix: randomTetrimino(),
 	position: {
 		x: 0,
 		y: 0,
@@ -203,7 +204,8 @@ function playerMove(direction) {
  *
  */
 function playerReset() {
-	player.matrix = randomTetrimino();
+	player.matrix = JSON.parse(JSON.stringify(player.nextMatrix));
+	player.nextMatrix = randomTetrimino();
 	player.position.y = 0;
 	player.position.x = Math.floor(arena[0].length / 2 - player.matrix[0].length / 2);
 	if (collide(arena, player)) {
