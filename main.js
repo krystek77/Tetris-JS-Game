@@ -172,7 +172,7 @@ function checkFullRow() {
 			// console.log(SCORE);
 			y++;
 		}
-		rowCounter++;
+		rowCounter *= 2;
 	}
 }
 
