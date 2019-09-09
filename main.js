@@ -1,4 +1,4 @@
-const canvas = document.getElementById('tetris');
+const canvas = document.querySelector('.tetris');
 const context = canvas.getContext('2d');
 const ROWS = 20;
 const COLUMNS = 10;
