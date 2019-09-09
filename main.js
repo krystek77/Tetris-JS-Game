@@ -168,6 +168,7 @@ function checkFullRow() {
 			const row = arena.splice(y, 1)[0].fill(0);
 			arena.unshift(row);
 			player.score += rowCounter * 10;
+			player.rowCount++;
 			// console.log(SCORE);
 			y++;
 		}
@@ -308,13 +309,13 @@ function draw() {
 	context.fillRect(0, 0, canvas.width, canvas.height);
 
 	drawText('SCORE', 60, 20, 'white', 'bold 20px sans-serif', 40);
-	drawText(player.score, 60, 50, 'green', 'bold 40px sans-serif',100);
+	drawText(player.score, 60, 50, 'green', 'bold 40px sans-serif', 100);
 	drawText('LIFES', 60, canvas.height - 40, 'orange', 'bold 20px sans-serif', 40);
 	drawText('00' + player.life, 60, canvas.height - 10, 'white', 'bold 40px sans-serif', 40);
 	drawText('LEVEL', canvas.width - 100, canvas.height - 40, 'orange', 'bold 20px sans-serif', 40);
 	drawText(player.level, canvas.width - 100, canvas.height - 10, 'white', 'bold 40px sans-serif', 40);
-	drawText('ROWS', 10, canvas.height/2 + 10, 'white', 'bold 20px sans-serif', 40);
-	drawText(player.rowCount,10,canvas.height/2 + 40,'blue', 'bold 40px sans-serif', 40);
+	drawText('ROWS', 10, canvas.height / 2 + 10, 'white', 'bold 20px sans-serif', 40);
+	drawText(player.rowCount, 10, canvas.height / 2 + 40, 'blue', 'bold 40px sans-serif', 40);
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
 }
