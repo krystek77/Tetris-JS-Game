@@ -335,6 +335,17 @@ function update(time = 0) {
 		playerDrop();
 	}
 	draw();
+	if (player.life > 0) requestAnimationFrame(update);
+}
+
+function resetGame() {
+	playerReset();
+	player.life = 3;
+	player.score = 0;
+	player.level = 1;
+	arena.forEach(row => {
+		row.fill(0);
+	});
 	requestAnimationFrame(update);
 }
 
@@ -357,6 +368,7 @@ function control(event) {
 	}
 }
 window.addEventListener('keydown', control);
+canvas.addEventListener('click', resetGame);
 
 playerReset();
 update();
