@@ -337,7 +337,10 @@ function update(time = 0) {
 	draw();
 	if (player.life > 0) requestAnimationFrame(update);
 }
-
+/**
+ * Resets game
+ *
+ */
 function resetGame() {
 	playerReset();
 	player.life = 3;
