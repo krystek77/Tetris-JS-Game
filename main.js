@@ -9,6 +9,7 @@ const MARGIN_LEFT = 3;
 const MARGIN_RIGHT = 3;
 const SCORE_INTERVAL = 100;
 const MAX_LEVEL = 10;
+let stop;
 
 canvas.width = (COLUMNS + MARGIN_LEFT + MARGIN_RIGHT) * SIZE_SQUARE;
 canvas.height = (ROWS + MARGIN_TOP + MARGIN_BOTTOM) * SIZE_SQUARE;
@@ -175,7 +176,9 @@ function checkFullRow() {
 
 			if (player.score - lastScores >= SCORE_INTERVAL) {
 				lastScores = player.score;
-				player.level += 1;
+				if (player.level <= MAX_LEVEL) {
+					player.level += 1;
+				}
 			}
 			y++;
 			rowCounter *= 2;
@@ -354,11 +357,16 @@ function update(time = 0) {
 	if (dropCounter > dropInterval) {
 		playerDrop();
 	}
+
 	draw();
-	const stop = requestAnimationFrame(update);
+	stop = requestAnimationFrame(update);
+
 	if (player.life <= 0) {
 		cancelAnimationFrame(stop);
 		drawText('GAME OVER', canvas.width / 2 - 50, canvas.height / 2 + 30, 'white', 'bold 60px sans-serif', 100);
+	} else if (player.level > 10) {
+		drawText('THE END GAME', canvas.width / 2 - 50, canvas.height / 2 + 30, 'white', 'bold 60px sans-serif', 100);
+		cancelAnimationFrame(stop);
 	}
 }
 /**
@@ -369,7 +377,7 @@ function resetGame(event) {
 	const posX = event.offsetX;
 	const posY = event.offsetY;
 	if (posX > canvas.width - 90 && posX < canvas.width - 90 + 80 && posY > 10 && posY < 10 + 40) {
-		console.log(posX, posY);
+		// console.log(posX, posY);
 		playerReset();
 		player.life = 3;
 		player.score = 0;
