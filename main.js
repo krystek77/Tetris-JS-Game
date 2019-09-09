@@ -128,32 +128,8 @@ function collide(arena, player) {
 }
 
 const arena = createMatrix(COLUMNS, ROWS);
-const player = {
-	matrix: randomTetrimino(),
-	nextMatrix: randomTetrimino(),
-	position: {
-		x: 0,
-		y: 0,
-	},
-	life: 3,
-	score: 0,
-	level: 1,
-	rowCount: 0,
-};
-/**
- * Drop player
- *
- */
-function playerDrop() {
-	player.position.y++;
-	if (collide(arena, player)) {;
-		player.position.y--;
-		merge(arena, player);
-		playerReset();
-		checkFullRow();
-	}
-	dropCounter = 0;
-}
+const player = new Player();
+
 let lastScores = 0;
 /**
  * Check if row is full
@@ -180,82 +156,6 @@ function checkFullRow() {
 			}
 			y++;
 			rowCounter *= 2;
-		}
-	}
-}
-
-/**
- * Move player to the right or left
- *
- * @param {Number} direction
- */
-function playerMove(direction) {
-	player.position.x += direction;
-	if (collide(arena, player)) {
-		player.position.x += -direction;
-	}
-	dropCounter = 0;
-}
-/**
- * Reset player
- *
- */
-function playerReset() {
-	player.matrix = JSON.parse(JSON.stringify(player.nextMatrix));
-	player.nextMatrix = randomTetrimino();
-	player.position.y = 0;
-	player.position.x = Math.floor(arena[0].length / 2 - player.matrix[0].length / 2);
-	if (collide(arena, player)) {
-		player.life--;
-		arena.forEach(row => {
-			row.fill(0);
-		});
-	}
-}
-
-/**
- *Rotates matrix 90 degrees clockwise for 1 and counter clockwise for -1 direction
- *
- * @param {Array} matrix
- * @param {Number} [direction=0]
- */
-function rotateMatrix(matrix, direction = 1) {
-	const m = [];
-	matrix.forEach((row, y) => {
-		m[y] = [];
-		row.forEach((value, x) => {
-			m[y][x] = matrix[x][y];
-		});
-	});
-	if (direction > 0) {
-		m.forEach((row, y) => {
-			m[y].reverse();
-		});
-	} else if (direction < 0) {
-		m.reverse();
-	}
-	return m;
-}
-/**
- * Rotates player
- *
- * @param {Number} direction
- */
-function playerRotate(direction) {
-	let offset = 1;
-	player.matrix = rotateMatrix(player.matrix, direction);
-
-	while (collide(arena, player)) {
-		
-		let pos = player.position.x;
-		
-		player.position.x += offset;
-		offset = -(offset + (offset > 0 ? 1 : -1));
-		if (offset > player.matrix[0].length) {
-			
-			player.position.x = pos;
-			player.matrix = rotateMatrix(player.matrix, -direction);
-			return;
 		}
 	}
 }
@@ -327,7 +227,7 @@ function draw() {
 	drawText(player.rowCount, 10, canvas.height / 2 + 40, 'blue', 'bold 40px sans-serif', 40);
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
-	drawMatrix(player.nextMatrix,{x:-3,y:-1});
+	drawMatrix(player.nextMatrix, { x: -3, y: -1 });
 }
 /**
  * Game Loop
@@ -342,7 +242,7 @@ function update(time = 0) {
 	lastTime = time;
 	dropCounter += deltaTime;
 	if (dropCounter > dropInterval) {
-		playerDrop();
+		player.drop();
 	}
 
 	draw();
@@ -364,7 +264,7 @@ function resetGame(event) {
 	const posX = event.offsetX;
 	const posY = event.offsetY;
 	if (posX > canvas.width - 90 && posX < canvas.width - 90 + 80 && posY > 10 && posY < 10 + 40) {
-		playerReset();
+		player.reset();
 		player.life = 3;
 		player.score = 0;
 		player.level = 1;
@@ -377,19 +277,19 @@ function resetGame(event) {
 
 function control(event) {
 	if (event.key === 'ArrowLeft') {
-		playerMove(-1);
+		player.move(-1);
 	} else if (event.key === 'ArrowRight') {
-		playerMove(+1);
+		player.move(+1);
 	} else if (event.key === 'ArrowUp') {
-		playerRotate(1);
+		player.rotate(1);
 	} else if (event.key === 'ArrowDown') {
-		playerRotate(-1);
+		player.rotate(-1);
 	} else if (event.key === 'd') {
-		playerDrop();
+		player.drop();
 	}
 }
 window.addEventListener('keydown', control);
 canvas.addEventListener('click', resetGame);
 
-playerReset();
+player.reset();
 update();
