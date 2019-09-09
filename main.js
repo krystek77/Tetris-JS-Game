@@ -8,6 +8,7 @@ const MARGIN_BOTTOM = 4;
 const MARGIN_LEFT = 3;
 const MARGIN_RIGHT = 3;
 const SCORE_INTERVAL = 100;
+const MAX_LEVEL = 10;
 
 canvas.width = (COLUMNS + MARGIN_LEFT + MARGIN_RIGHT) * SIZE_SQUARE;
 canvas.height = (ROWS + MARGIN_TOP + MARGIN_BOTTOM) * SIZE_SQUARE;
@@ -344,10 +345,10 @@ function draw() {
  */
 let lastTime = 0;
 let dropCounter = 0;
-let dropInterval = 1000;
 
 function update(time = 0) {
 	let deltaTime = time - lastTime;
+	let dropInterval = (1000 * (MAX_LEVEL - player.level + 1)) / 10;
 	lastTime = time;
 	dropCounter += deltaTime;
 	if (dropCounter > dropInterval) {
