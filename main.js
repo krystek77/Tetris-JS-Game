@@ -343,6 +343,7 @@ function draw() {
 	drawText(player.rowCount, 10, canvas.height / 2 + 40, 'blue', 'bold 40px sans-serif', 40);
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
+	drawMatrix(player.nextMatrix,{x:-3,y:-1});
 }
 /**
  * Game Loop
