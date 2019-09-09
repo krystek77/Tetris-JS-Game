@@ -7,6 +7,7 @@ const MARGIN_TOP = 4;
 const MARGIN_BOTTOM = 4;
 const MARGIN_LEFT = 3;
 const MARGIN_RIGHT = 3;
+const SCORE_INTERVAL = 100;
 
 canvas.width = (COLUMNS + MARGIN_LEFT + MARGIN_RIGHT) * SIZE_SQUARE;
 canvas.height = (ROWS + MARGIN_TOP + MARGIN_BOTTOM) * SIZE_SQUARE;
@@ -151,6 +152,7 @@ function playerDrop() {
 	}
 	dropCounter = 0;
 }
+let lastScores = 0;
 /**
  * Check if row is full
  *
@@ -169,10 +171,14 @@ function checkFullRow() {
 			arena.unshift(row);
 			player.score += rowCounter * 10;
 			player.rowCount++;
-			// console.log(SCORE);
+
+			if (player.score - lastScores >= SCORE_INTERVAL) {
+				lastScores = player.score;
+				player.level += 1;
+			}
 			y++;
+			rowCounter *= 2;
 		}
-		rowCounter *= 2;
 	}
 }
 
