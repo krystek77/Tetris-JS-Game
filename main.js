@@ -8,8 +8,8 @@ const MARGIN_BOTTOM = 2;
 const MARGIN_LEFT = 3;
 const MARGIN_RIGHT = 3;
 
-canvas.width = (COLUMNS + MARGIN_LEFT + MARGIN_RIGHT )* SIZE_SQUARE;
-canvas.height = (ROWS + MARGIN_TOP +MARGIN_BOTTOM) * SIZE_SQUARE;
+canvas.width = (COLUMNS + MARGIN_LEFT + MARGIN_RIGHT) * SIZE_SQUARE;
+canvas.height = (ROWS + MARGIN_TOP + MARGIN_BOTTOM) * SIZE_SQUARE;
 
 const colors = ['#000000', '#fe0900', '#999999', '#1bffff', '#fdff00', '#ff00fe', '#2600ff', '#01ff00'];
 /**
@@ -68,8 +68,8 @@ function randomTetrimino() {
 function drawSquare(x, y, color) {
 	context.fillStyle = color;
 	context.strokeStyle = 'grey';
-	context.fillRect((x+MARGIN_LEFT) * SIZE_SQUARE, (y+MARGIN_TOP) * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
-	context.strokeRect((x+MARGIN_LEFT) * SIZE_SQUARE, (y+MARGIN_TOP)* SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
+	context.fillRect((x + MARGIN_LEFT) * SIZE_SQUARE, (y + MARGIN_TOP) * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
+	context.strokeRect((x + MARGIN_LEFT) * SIZE_SQUARE, (y + MARGIN_TOP) * SIZE_SQUARE, SIZE_SQUARE, SIZE_SQUARE);
 }
 /**
  * Draw matrix
@@ -284,7 +284,20 @@ function merge(arena, player) {
 		});
 	});
 }
-
+/**
+ * Draw text on canvas
+ *
+ * @param {*} text
+ * @param {Number} posX
+ * @param {Number} posY
+ * @param {Number} maxW
+ * @param {String} color
+ */
+function drawText(text, posX, posY, color, font, maxW) {
+	context.fillStyle = color;
+	context.font = font;
+	context.fillText(text, posX, posY, maxW);
+}
 /**
  * Render scene
  *
@@ -292,7 +305,8 @@ function merge(arena, player) {
 function draw() {
 	context.fillStyle = 'black';
 	context.fillRect(0, 0, canvas.width, canvas.height);
-
+	drawText('SCORE', 60, 20, 'white', 'bold 20px sans-serif', 40);
+	drawText(player.score, 60, 60, 'white', 'bold 40px sans-serif', 40);
 	drawArena(arena, { x: 0, y: 0 });
 	drawMatrix(player.matrix, player.position);
 }
