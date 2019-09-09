@@ -348,7 +348,11 @@ function update(time = 0) {
 		playerDrop();
 	}
 	draw();
-	if (player.life > 0) requestAnimationFrame(update);
+	const stop = requestAnimationFrame(update);
+	if (player.life <= 0) {
+		cancelAnimationFrame(stop);
+		drawText('GAME OVER', canvas.width / 2 - 50, canvas.height / 2 + 30, 'white', 'bold 60px sans-serif', 100);
+	}
 }
 /**
  * Resets game
