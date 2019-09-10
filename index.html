@@ -7,7 +7,7 @@
 		<!-- styles -->
 		<title>TETRISJS2</title>
 		<link rel="stylesheet" href="./main.css" />
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,600,900&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,600,900&display=swap" rel="stylesheet" />
 	</head>
 	<body>
 		<div class="game-panel">
@@ -29,13 +29,14 @@
 					<input class="game-panel__input" type="radio" name="game" value="multiplayer player" id="multi" />
 					<label class="game-panel__label" for="multi">Multi player</label>
 				</div>
-				<div class="game-panel__control-group">
+				<div class="game-panel__control-group game-panel__control-group--block">
 					<button class="game-panel__button" type="submit">Start</button>
 				</div>
 			</form>
+			<p class="game-panel__footer">Krystian Wrona - for the love of learning programming. 2019</p>
 		</div>
 
-		<!-- <div>
+		<div class="game-wrapper hide">
 			<div class="game-tetris">
 				<canvas class="tetris"></canvas>
 				<div class="player-controls">
@@ -51,7 +52,7 @@
 				</div>
 				<p class="reset-info">To reset game, click reset button</p>
 			</div>
-		</div> -->
+		</div>
 		<script src="./player.js"></script>
 		<script src="./arena.js"></script>
 		<script src="./tetris.js"></script>
