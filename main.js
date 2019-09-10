@@ -14,7 +14,7 @@ function start(event) {
 	reload.classList.remove('hide');
 
 	switch (value) {
-		case 'multiplayer player':
+		case 'two players':
 			gamePanel.classList.add('hide');
 			gameWrapper.classList.remove('hide');
 			break;
