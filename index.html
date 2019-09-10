@@ -7,23 +7,51 @@
 		<!-- styles -->
 		<title>TETRISJS2</title>
 		<link rel="stylesheet" href="./main.css" />
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:300,600,900&display=swap" rel="stylesheet">
 	</head>
 	<body>
-		<div class="game-tetris">
-			<canvas class="tetris"></canvas>
-			<div class="player-controls">
-				<span class="player-control"
-					><b class="player-control__key">&uArr;</b> - rotate 90 degrees clockwise</span
-				>
-				<span class="player-control"
-					><b class="player-control__key">&dArr;</b> - rotate 90 degrees counterclockwise</span
-				>
-				<span class="player-control"><b class="player-control__key">&lArr;</b> - move left</span>
-				<span class="player-control"><b class="player-control__key">&rArr;</b> - move right</span>
-				<span class="player-control"><b class="player-control__key">d</b> - drop down</span>
-			</div>
-			<p class="reset-info">To reset game, click reset button</p>
+		<div class="game-panel">
+			<h1 class="game-panel__title">Tetris Game</h1>
+			<form class="game-panel__form">
+				<p class="game-panel__text">Please choose play mode</p>
+				<div class="game-panel__control-group">
+					<input
+						class="game-panel__input"
+						type="radio"
+						name="game"
+						value="single player"
+						id="single"
+						checked
+					/>
+					<label class="game-panel__label" for="single">Single player</label>
+				</div>
+				<div class="game-panel__control-group">
+					<input class="game-panel__input" type="radio" name="game" value="multiplayer player" id="multi" />
+					<label class="game-panel__label" for="multi">Multi player</label>
+				</div>
+				<div class="game-panel__control-group">
+					<button class="game-panel__button" type="submit">Start</button>
+				</div>
+			</form>
 		</div>
+
+		<!-- <div>
+			<div class="game-tetris">
+				<canvas class="tetris"></canvas>
+				<div class="player-controls">
+					<span class="player-control"
+						><b class="player-control__key">&uArr;</b> - rotate 90 degrees clockwise</span
+					>
+					<span class="player-control"
+						><b class="player-control__key">&dArr;</b> - rotate 90 degrees counterclockwise</span
+					>
+					<span class="player-control"><b class="player-control__key">&lArr;</b> - move left</span>
+					<span class="player-control"><b class="player-control__key">&rArr;</b> - move right</span>
+					<span class="player-control"><b class="player-control__key">d</b> - drop down</span>
+				</div>
+				<p class="reset-info">To reset game, click reset button</p>
+			</div>
+		</div> -->
 		<script src="./player.js"></script>
 		<script src="./arena.js"></script>
 		<script src="./tetris.js"></script>
