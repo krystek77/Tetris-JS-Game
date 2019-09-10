@@ -1,7 +1,4 @@
 const canvas = document.querySelector('.tetris');
-
-
-
 const tetris = new Tetris(canvas);
 
 function control(event) {
@@ -20,4 +17,3 @@ function control(event) {
 window.addEventListener('keydown', control);
 canvas.addEventListener('click', () => tetris.resetGame(event));
 
-tetris.player.reset();

@@ -13,6 +13,7 @@ function Player(tetris) {
 		(this.level = 1),
 		(this.rowCount = 0),
 		(this.lastScores = 0);
+	this.reset();
 }
 
 Player.prototype.createTetrimino = function(type) {
