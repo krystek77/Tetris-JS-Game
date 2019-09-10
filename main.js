@@ -1,6 +1,29 @@
 const canvas = document.querySelector('.tetris');
 const tetris = new Tetris(canvas);
 
+const submit = document.querySelector('.game-panel__button');
+
+function start(event) {
+	event.preventDefault();
+	const mode = document.forms.mode;
+	const value = mode.elements.game.value;
+	const gamePanel = document.querySelector('.game-panel');
+	const gameWrapper = document.querySelector('.game-wrapper');
+
+	switch (value) {
+		case 'multiplayer player':
+			gamePanel.classList.add('hide');
+			gameWrapper.classList.remove('hide');
+			break;
+		default:
+			gamePanel.classList.add('hide');
+			gameWrapper.classList.remove('hide');
+			let children = gameWrapper.children;
+			children = [...children];
+			children[1].classList.add('hide');
+	}
+}
+
 function control(event) {
 	if (event.key === 'ArrowLeft') {
 		tetris.player.move(-1);
@@ -17,3 +40,4 @@ function control(event) {
 window.addEventListener('keydown', control);
 canvas.addEventListener('click', () => tetris.resetGame(event));
 
+submit.addEventListener('click', start);
