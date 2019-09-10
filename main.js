@@ -4,6 +4,8 @@ const tetris = new Tetris(canvas);
 const submit = document.querySelector('.game-panel__button');
 const reload = document.querySelector('.reload');
 
+
+
 function start(event) {
 	event.preventDefault();
 	const mode = document.forms.mode;
@@ -53,7 +55,7 @@ reload.addEventListener('click', function(event) {
 
 // const keyMap = [];
 // /**
-//  * 
+//  *
 //  *
 //  * @param {Event} event
 //  */
