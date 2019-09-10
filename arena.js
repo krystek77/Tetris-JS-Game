@@ -1,7 +1,23 @@
-function Arena() {
-	this.board = createMatrix(COLUMNS, ROWS);
+function Arena(columns, rows, tetris) {
+	this.tetris = tetris;
+	this.columns = columns;
+	this.rows = rows;
+	this.board = this.createMatrix(this.columns, this.rows);
 }
-Arena.prototype.checkFullRow = function() {
+
+Arena.prototype.drawArena = function(arena, offset) {
+	arena.board.forEach((row, y) => {
+		row.forEach((value, x) => {
+			this.tetris.drawSquare(x + offset.x, y + offset.y, this.tetris.colors[value]);
+		});
+	});
+};
+
+Arena.prototype.createMatrix = function(columns, rows) {
+	return Array.from({ length: rows }, row => Array.from({ length: columns }).fill(0));
+};
+
+Arena.prototype.checkFullRow = function(player) {
 	let rowCounter = 1;
 	for (let y = this.board.length - 1; y > 0; y--) {
 		let isFullRow = true;
@@ -14,9 +30,9 @@ Arena.prototype.checkFullRow = function() {
 			player.score += rowCounter * 10;
 			player.rowCount++;
 
-			if (player.score - lastScores >= SCORE_INTERVAL) {
-				lastScores = player.score;
-				if (player.level <= MAX_LEVEL) {
+			if (player.score - player.lastScores >= this.tetris.SCORE_INTERVAL) {
+				player.lastScores = player.score;
+				if (player.level <= this.tetris.MAX_LEVEL) {
 					player.level += 1;
 				}
 			}
@@ -43,8 +59,8 @@ Arena.prototype.merge = function(player) {
 	});
 };
 
-Arena.prototype.collide = function(player){
-    for (let y = 0; y < player.matrix.length; ++y) {
+Arena.prototype.collide = function(player) {
+	for (let y = 0; y < player.matrix.length; ++y) {
 		for (let x = 0; x < player.matrix[y].length; ++x) {
 			if (
 				player.matrix[y][x] !== 0 &&
@@ -56,28 +72,4 @@ Arena.prototype.collide = function(player){
 	}
 
 	return false;
-}
-
-
-// /**
-//  * Check collision
-//  *
-//  * @param {Array} arena
-//  * @param {Object} player
-//  * @returns
-//  */
-// function collide(arena, player) {
-// 	//true && undefined = undefined
-// 	for (let y = 0; y < player.matrix.length; ++y) {
-// 		for (let x = 0; x < player.matrix[y].length; ++x) {
-// 			if (
-// 				player.matrix[y][x] !== 0 &&
-// 				(arena[y + player.position.y] && arena[y + player.position.y][x + player.position.x]) !== 0
-// 			) {
-// 				return true;
-// 			}
-// 		}
-// 	}
-
-// 	return false;
-// }
+};
