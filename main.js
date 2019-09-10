@@ -48,3 +48,25 @@ reload.addEventListener('click', function(event) {
 	location.reload();
 });
 
+// window.addEventListener('keydown', keys);
+// window.addEventListener('keyup', keys);
+
+// const keyMap = [];
+// /**
+//  * 
+//  *
+//  * @param {Event} event
+//  */
+// function keys(event) {
+// 	if (event.type === 'keydown') {
+// 		if (event.keyCode === 32 && !keyMap[event.keyCode]) {
+// 			keyMap[event.keyCode] = true;
+// 			console.log(event.keyCode);
+// 		} else if (event.keyCode === 102 && !keyMap[event.keyCode]) {
+// 			keyMap[event.keyCode] = true;
+// 			console.log(event.keyCode);
+// 		}
+// 	} else if (event.type === 'keyup') {
+// 		keyMap[event.keyCode] = false;
+// 	}
+// }
