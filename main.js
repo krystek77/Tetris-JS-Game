@@ -1,10 +1,7 @@
-const canvas = document.querySelector('.tetris');
-const tetris = new Tetris(canvas);
-
 const submit = document.querySelector('.game-panel__button');
 const reload = document.querySelector('.reload');
 
-
+const tetrises = [];
 
 function start(event) {
 	event.preventDefault();
@@ -14,18 +11,30 @@ function start(event) {
 	const gameWrapper = document.querySelector('.game-wrapper');
 
 	reload.classList.remove('hide');
+	let players;
 
 	switch (value) {
 		case 'two players':
 			gamePanel.classList.add('hide');
 			gameWrapper.classList.remove('hide');
+
+			players = document.querySelectorAll('.tetris');
+			[...players].forEach(player => {
+				const tetris = new Tetris(player);
+				tetrises.push(tetris);
+			});
 			break;
 		default:
 			gamePanel.classList.add('hide');
 			gameWrapper.classList.remove('hide');
 			let children = gameWrapper.children;
-			children = [...children];
-			children[1].classList.add('hide');
+			[...children][1].remove();
+			
+			players = document.querySelectorAll('.tetris');
+			[...players].forEach(player => {
+				const tetris = new Tetris(player);
+				tetrises.push(tetris);
+			});
 	}
 }
 
@@ -43,7 +52,6 @@ function control(event) {
 	}
 }
 window.addEventListener('keydown', control);
-canvas.addEventListener('click', () => tetris.resetGame(event));
 
 submit.addEventListener('click', start);
 reload.addEventListener('click', function(event) {
