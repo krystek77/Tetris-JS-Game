@@ -11,6 +11,8 @@ function start(event) {
 	const gamePanel = document.querySelector('.game-panel');
 	const gameWrapper = document.querySelector('.game-wrapper');
 
+	reload.classList.remove('hide');
+
 	switch (value) {
 		case 'multiplayer player':
 			gamePanel.classList.add('hide');
