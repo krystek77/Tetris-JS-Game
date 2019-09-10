@@ -47,3 +47,4 @@ submit.addEventListener('click', start);
 reload.addEventListener('click', function(event) {
 	location.reload();
 });
+
