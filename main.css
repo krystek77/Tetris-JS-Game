@@ -45,7 +45,8 @@ body {
     display: block;
 }
 
-.game-panel__button {
+.game-panel__button,
+.reload {
     display: block;
     margin: 0 auto;
     padding: 10px 20px;
@@ -59,7 +60,8 @@ body {
     transition: all .3s ease-in;
 }
 
-.game-panel__button:hover {
+.game-panel__button:hover,
+.reload:hover {
     background-color: black;
     color: rgb(228, 228, 228);
 }
