@@ -2,6 +2,7 @@ const canvas = document.querySelector('.tetris');
 const tetris = new Tetris(canvas);
 
 const submit = document.querySelector('.game-panel__button');
+const reload = document.querySelector('.reload');
 
 function start(event) {
 	event.preventDefault();
@@ -41,3 +42,6 @@ window.addEventListener('keydown', control);
 canvas.addEventListener('click', () => tetris.resetGame(event));
 
 submit.addEventListener('click', start);
+reload.addEventListener('click', function(event) {
+	location.reload();
+});
