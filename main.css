@@ -69,6 +69,14 @@ body {
 
 
 /* TETRIS */
+.game-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .game-tetris {
     display: flex;
     flex-direction: column;
